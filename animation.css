@@ -1,0 +1,445 @@
+.canvas {
+    position: relative;
+    
+    width: 500px;
+    height: 380px;
+    margin: 80px 0 0 0;
+    
+    transition: .3s ease;
+    
+    perspective: 800px;
+}
+
+.box_front {
+    position: relative;
+    
+    overflow: hidden;
+    
+    width: 500px;
+    height: 380px;
+    
+    background: skyblue;
+    box-shadow: 0 -400px 300px -300px steelblue inset;
+
+    animation-name: animate_sky;
+    animation-iteration-count: infinite;
+    animation-duration: 100s;
+    animation-timing-function: cubic-bezier(0, 0, 1, 1);
+}
+
+@keyframes animate_sky {
+    0% {
+        background: darkslateblue;
+        box-shadow: 0 -400px 300px -300px transparent inset; 
+    }
+    4% {
+        background: darkslateblue;
+        box-shadow: 0 -400px 300px -300px transparent inset; 
+    }
+    20% {
+        background: skyblue;
+        box-shadow: 0 -400px 300px -300px steelblue inset;
+    }
+    28% {
+        background: skyblue;
+        box-shadow: 0 -400px 300px -300px steelblue inset;
+    }
+    54% {
+        background: darkslateblue;
+        box-shadow: 0 -400px 300px -300px orangered inset;
+    }
+    57% {
+        background: darkslateblue;
+        box-shadow: 0 -400px 300px -300px transparent inset;
+    }
+    100% {
+        background: darkslateblue;
+        box-shadow: 0 -400px 300px -300px transparent inset;
+    }
+}
+
+/*TODO
+Цвета неба задаются следующими свойствами:
+    День:
+        background: skyblue;
+        box-shadow: 0 -400px 300px -300px steelblue inset;
+    Вечер:
+        background: darkslateblue;
+        box-shadow: 0 -400px 300px -300px orangered inset;
+    Ночь:
+        background: darkslateblue;
+        box-shadow: 0 -400px 300px -300px transparent inset;
+        
+Нужно реализовать плавный переход между ними и зациклить его.
+*/
+
+.ship::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    
+    width: 100px;
+    height: 20px;
+    
+    content: '';
+    
+    border-radius: 0 0 0 20px;
+    background: #e25c45;
+}
+
+.ship::before {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    
+    width: 65px;
+    height: 16px;
+    
+    content: '';
+    
+    border-radius: 20px 0 0 0;
+    background: #fff;
+}
+
+.ship {
+    position: absolute;
+    right: 0;
+    bottom: 30px;
+    
+    width: 100px;
+    height: 36px;
+
+    animation-name: animate_ship;
+    animation-duration: 60s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0, 0, 1, 1);
+}
+
+@keyframes animate_ship {
+    from {
+        transform: translateX(130px);
+    }
+    to {
+        transform: translateX(-500px);
+    }
+}
+
+.ship_smokestack {
+    position: absolute;
+    bottom: 36px;
+    left: 45px;
+    
+    width: 10px;
+    height: 17px;
+    
+    background: #a18e6e;
+}
+
+.ship_window {
+    position: absolute;
+    top: 6px;
+    left: 40px;
+    
+    width: 7px;
+    height: 7px;
+    
+    border-radius: 50%;
+    background: #a18e6e;
+    box-shadow: 13px 0 0 0 #a18e6e, -13px 0 0 0 #a18e6e;
+}
+
+.smoke div {
+    position: absolute;
+    
+    width: 7px;
+    height: 7px;
+    
+    border-radius: 50%;
+    background: #fff;
+}
+
+.smoke-1 {
+    top: -25px;
+    right: 44px;
+
+    animation-name: animate_smoke;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+.smoke-2 {
+    top: -25px;
+    right: 42px;
+    animation-name: animate_smoke;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+}
+
+.smoke-3 {
+    top: -25px;
+    right: 49px;
+    animation-name: animate_smoke;
+    animation-duration: 9s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes animate_smoke {
+    from {
+        transform: translateX(0px) translateY(0px) scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(8px) translateY(-20px) scale(2);
+        opacity: 0;
+    }
+}
+
+.sun {
+    position: absolute;
+    top: 30px;
+    right: 50%;
+    
+    width: 80px;
+    height: 80px;
+    
+    border-radius: 50%;
+    background: #ffcf11;
+    box-shadow: 0 0 100px #ffdf05;
+    animation-name: animate_sun;
+    animation-iteration-count: 3;
+    animation-duration: 100s;
+    animation-timing-function: cubic-bezier(0, 0, 1, 1);
+}
+
+@keyframes animate_sun {
+    0% {
+        transform: translate(-350px, 400px) rotate(0turn);
+    }
+    10% {
+        transform: translate(-240px, 180px) rotate(1turn);
+    }
+    20% {
+        transform: translate(-100px, 0px) rotate(2turn);
+    }
+    30% {
+        transform: translate(40px, 0px) rotate(3turn);
+    }
+    35% {
+        transform: translate(130px, 40px) rotate(3.5turn);
+    }
+    40% {
+        transform: translate(210px, 70px) rotate(4turn);
+    }
+    50% {
+        transform: translate(310px, 230px) rotate(5turn);
+    }
+    60% {
+        transform: translate(400px, 400px) rotate(6turn);
+    }
+    100% {
+        transform: translate(-300px, 400px) rotate(0turn);
+    }
+}
+
+.sun-wrapper {
+    position: absolute;
+    
+    width: 100%;
+    height: 100%;
+    
+    transform-origin: bottom center;
+}
+
+.sun div {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    
+    width: 2px;
+    height: 100px;
+    margin-left: -1px;
+    
+    border: solid #ffcf11;
+    border-width: 10px 0 10px 0;
+}
+
+.sun div:nth-child(2) {
+    transform: rotate(18deg);
+}
+
+.sun div:nth-child(3) {
+    transform: rotate(36deg);
+}
+
+.sun div:nth-child(4) {
+    transform: rotate(54deg);
+}
+
+.sun div:nth-child(5) {
+    transform: rotate(72deg);
+}
+
+.sun div:nth-child(6) {
+    transform: rotate(90deg);
+}
+
+.sun div:nth-child(7) {
+    transform: rotate(-18deg);
+}
+
+.sun div:nth-child(8) {
+    transform: rotate(-36deg);
+}
+
+.sun div:nth-child(9) {
+    transform: rotate(-54deg);
+}
+
+.sun div:nth-child(10) {
+    transform: rotate(-72deg);
+}
+
+.cloud {
+    position: absolute;
+    left: -180px;
+    
+    width: 200px;
+    height: 60px;
+    
+    opacity: .8;
+    border-radius: 200px;
+    background: #fff;
+}
+
+@keyframes animate_near_cloud_one {
+    from {
+        transform: translateX(-240px) scale(.7);
+    }
+    to {
+        transform: translateX(700px) scale(.7);
+    }
+}
+
+@keyframes animate_near_cloud_two {
+    from {
+        transform: translateX(-0px) scale(-0.7, 0.7);
+    }
+    to {
+        transform: translateX(700px) scale(-0.8, 0.8);
+    }
+}
+
+@keyframes animate_far_cloud_one {
+    from {
+        transform: translateX(-20px) scale(-0.4, 0.4);
+    } 
+    to {
+        transform: translateX(700px) scale(-0.4, 0.4);   
+    }
+}
+
+@keyframes animate_far_cloud_two {
+    from {
+        transform: translateX(-500px) scale(-0.5, 0.5);
+    } 
+    to {
+        transform: translateX(700px) scale(-0.5, 0.5);   
+    }
+}
+
+.cloud:before,
+.cloud:after {
+    position: absolute;
+    top: -15px;
+    left: 10px;
+    
+    width: 100px;
+    height: 80px;
+    
+    content: '';
+    
+    border-radius: 100px;
+    background: #fff;
+}
+
+.cloud:after {
+    top: -55px;
+    right: 15px;
+    left: auto;
+    
+    width: 120px;
+    height: 120px;
+}
+
+.cloud-1 {
+    top: 10px;
+    animation-name: animate_far_cloud_one;
+    animation-duration: 60s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0, 0, 1, 1);
+}
+
+.cloud-2 {
+    top: 50px;
+    animation-name: animate_near_cloud_one;
+    animation-duration: 30s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0, 0, 1, 1);
+}
+
+.cloud-3 {
+    top: 100px;
+    animation-name: animate_far_cloud_two;
+    animation-duration: 50s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0, 0, 1, 1);
+}
+
+.cloud-4 {
+    top: 170px;
+    animation-name: animate_near_cloud_two;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0, 0, 1, 1);
+}
+
+.sea {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    
+    height: 40px;
+    
+    opacity: .8;
+    background: #2a94d6;
+
+    animation-name: animate_sea;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes animate_sea {
+    0% {
+        transform: translateY(0px);
+    } 
+    50% {
+        transform: translateY(-4px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.sea::after {
+    position: absolute;
+    right: 0;
+    bottom: -5px;
+    left: 0;
+    
+    height: 15px;
+    
+    content: '';
+    
+    background: #1d7fbb;
+}
